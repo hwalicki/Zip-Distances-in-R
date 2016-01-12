@@ -43,14 +43,14 @@ cutDf <- function(totalNum, subNum, subNrow, df) {
 
 
 ## Breakdown dfs
-cutAndSaveDfs <- function(subNum, subNrow, df, baseFp) {
+cutAndSaveDfs <- function(subNum, subNrow, df) {
   
   finalSaves <- lapply(1:subNum, function(k) {
     
     finalDf <- cutDf(k, subNum, subNrow, df)
     finalDf <- finalDf[c(7,1,4,2,3,5,6,8)]
     
-    fp <- paste(baseFp, "ZipOutputs", k, ".csv", sep="")
+    fp <- paste("ZipOutputs", k, ".csv", sep="")
     write.csv(finalDf, file=fp, row.names=F) # Save
     print(paste("CSV #", k, " saved"))
   })

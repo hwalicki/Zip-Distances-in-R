@@ -1,13 +1,11 @@
 ################### GET DISTANCES BETWEEN ZIPS IN MULTIPLE REGIONS ############
 
 ### Load functions
-baseFp <- "C:\\Users\\Heather\\Documents\\R\\Other\\Zip-Distances-in-R\\"
-setwd(baseFp)
 source("zipFuns.r")
 
 ### Load data 
 # Original Source: https://www.aggdata.com/node/86
-origDat <- read.csv(paste(baseFp, "us_postal_codes.csv", sep=""))
+origDat <- read.csv("us_postal_codes.csv")
 
 desiredRegions <- c("Delaware","Rhode Island") #For ease, just do a few small states
 dat <- origDat[(origDat$State %in% desiredRegions),]
@@ -57,4 +55,4 @@ calcDistances <- lapply(1:length(regions), function(i) {
 maxNum = 1000000
 subNum <- max(round(nrow(df)/maxNum,0),1)
 subNrow <- round(nrow(df)/subNum)  # ~1M
-saves <- cutAndSaveDfs(subNum, subNrow, df, baseFp)
+saves <- cutAndSaveDfs(subNum, subNrow, df)
